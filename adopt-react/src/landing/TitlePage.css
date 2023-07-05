@@ -1,0 +1,16 @@
+.title-page {
+  background-image: url("../assets/title_page_bg.jpg");
+  background-position: center;
+}
+.btn-adopt {
+  background-color: #f37320;
+  color: #fff;
+  box-sizing: border-box;
+  border: 2px solid #f37320;
+}
+
+.btn-adopt:hover {
+  background-color: rgb(255, 255, 255, 0.3);
+  color: #f37320;
+  border: 2px solid #f37320;
+}
