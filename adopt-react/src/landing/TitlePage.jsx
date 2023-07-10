@@ -4,7 +4,7 @@ import "./TitlePage.css";
 export default function TitlePage() {
   return (
     <div className="title-page vh-100 d-flex align-items-center">
-      <div className="px-3 d-flex flex-column">
+      <div className="px-3 px-lg-5 d-flex flex-column">
         <h1 className="mb-0 pb-1">
           WE PUT OUR <br />
           ANIMALS FIRST.

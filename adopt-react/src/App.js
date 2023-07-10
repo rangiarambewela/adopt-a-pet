@@ -5,6 +5,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 
 import TitlePage from "./landing/TitlePage";
+import WaysToHelp from "./landing/WaysToHelp";
+import Annoucements from "./landing/Annoucements";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -27,6 +29,8 @@ export default function App() {
       {/* <div>{data["test1"]}</div>
       <div>{data["test2"]}</div> */}
       <TitlePage />
+      <WaysToHelp />
+      <Annoucements />
     </div>
   );
 }

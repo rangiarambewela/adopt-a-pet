@@ -22,3 +22,35 @@ h3 {
   font-size: 1.5rem;
   color: #000;
 }
+
+.action-btn-primary {
+  background-color: #f37320;
+  color: #fff;
+  box-sizing: border-box;
+  border: 2px solid #f37320;
+  margin-bottom: 1rem;
+}
+
+.action-btn-primary:hover {
+  background-color: rgb(255, 255, 255, 0.3);
+  color: #f37320;
+  border: 2px solid #f37320;
+}
+
+.action-btn-secondary {
+  background-color: rgb(255, 255, 255, 0.3);
+  color: #f37320;
+  box-sizing: border-box;
+  border: 2px solid #f37320;
+  margin-bottom: 1rem;
+}
+
+.action-btn-secondary:hover {
+  background-color: #f37320;
+  color: #fff;
+  border: 2px solid #f37320;
+}
+
+.img-round {
+  border-radius: 10px;
+}
