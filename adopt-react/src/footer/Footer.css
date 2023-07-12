@@ -1,0 +1,27 @@
+.footer {
+  background-color: #0e1041;
+  color: #fff;
+}
+
+.footer-title {
+  color: #f37320;
+  margin-bottom: 1.5rem;
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  box-sizing: border-box;
+}
+
+.footer-link:hover {
+  color: #f37320;
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+.footer-contact {
+  border-top: 1px solid #495057;
+  padding-top: 2rem;
+}

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import TitlePage from "./landing/TitlePage";
-import WaysToHelp from "./landing/WaysToHelp";
-import Annoucements from "./landing/Annoucements";
+import LandingPage from "./landing/LandingPage";
+import About from "./about/About";
+import Footer from "./footer/Footer";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -28,9 +29,12 @@ export default function App() {
     <div className="App">
       {/* <div>{data["test1"]}</div>
       <div>{data["test2"]}</div> */}
-      <TitlePage />
-      <WaysToHelp />
-      <Annoucements />
+
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

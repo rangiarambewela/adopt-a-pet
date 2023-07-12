@@ -9,7 +9,7 @@ function AnnoucementCard() {
       <img src={puppies} className="img-fluid card-img" alt="" />
       <div className="p-3">
         <h3>Event Title Temp</h3>
-        <p>
+        <p className="mb-3">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, vel
           in provident maiores ipsa quaerat delectus natus obcaecati maxime
           consectetur dolore ducimus rerum perspiciatis suscipit recusandae
