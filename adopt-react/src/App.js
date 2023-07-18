@@ -7,6 +7,7 @@ import "./App.css";
 
 import LandingPage from "./landing/LandingPage";
 import About from "./about/About";
+import Navbar from "./navbar/Navbar";
 import Footer from "./footer/Footer";
 
 export default function App() {
@@ -29,6 +30,8 @@ export default function App() {
     <div className="App">
       {/* <div>{data["test1"]}</div>
       <div>{data["test2"]}</div> */}
+
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<LandingPage />} />

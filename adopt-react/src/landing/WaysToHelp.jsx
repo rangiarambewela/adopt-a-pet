@@ -12,7 +12,7 @@ export default function WaysToHelp() {
       <div className=" ">
         <div className="">
           <h2>Help Us Save Animals</h2>
-          <p>{fundingInfo}</p>
+          <p className="pb-3">{fundingInfo}</p>
         </div>
         <div className=" d-flex flex-column">
           <button className="btn action-btn-primary py-2">Donate</button>
