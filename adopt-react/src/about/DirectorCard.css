@@ -1,0 +1,9 @@
+.director-img {
+  max-height: 422px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.director-card {
+  border-radius: 10px;
+}

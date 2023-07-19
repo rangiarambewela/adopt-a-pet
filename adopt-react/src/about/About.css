@@ -1,0 +1,9 @@
+.about-img {
+  @media (min-width: 576px) {
+    max-width: 50%;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 25%;
+  }
+}
