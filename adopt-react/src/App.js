@@ -28,9 +28,6 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* <div>{data["test1"]}</div>
-      <div>{data["test2"]}</div> */}
-
       <Navbar />
 
       <Routes>
