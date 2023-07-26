@@ -1,0 +1,14 @@
+.login-card {
+  @media (max-width: 575px) {
+    width: 100%;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
+    width: 75%;
+  }
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+  @media (min-width: 1200px) {
+    width: 30%;
+  }
+}

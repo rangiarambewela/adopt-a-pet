@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const visitingHoursDescription =
@@ -14,36 +15,40 @@ function Footer() {
         <div className="col px-0 d-lg-flex justify-content-evenly">
           <div className="d-flex flex-column py-3 py-lg-0">
             <h3 className="footer-title">Adoption Links</h3>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Cats For Adoption
             </a>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Dogs for Adoption
             </a>
           </div>
           <div className="d-flex flex-column py-3 py-lg-0">
             <h3 className="footer-title">Support Us</h3>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Donate
             </a>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Our Wish List
             </a>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Host a Fundraiser
             </a>
           </div>
           <div className="d-flex flex-column py-3 py-lg-0">
             <h3 className="footer-title">Get Involved</h3>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Volunteer
             </a>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Foster An Animal
             </a>
-            <a href="" className="footer-link">
+            <a href="#" className="footer-link">
               Membership
             </a>
+            <a href="#"></a>
+            <Link class="nav-link" className="footer-link" to="/login">
+              Volunteer Login
+            </Link>
           </div>
         </div>
       </div>

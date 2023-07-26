@@ -8,7 +8,9 @@ import "./App.css";
 import LandingPage from "./landing/LandingPage";
 import About from "./about/About";
 import Navbar from "./navbar/Navbar";
+import Login from "./login/Login";
 import Footer from "./footer/Footer";
+import ImageUpload from "./components/ImageUpload";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -30,9 +32,12 @@ export default function App() {
     <div className="App">
       <Navbar />
 
+      {/* <ImageUpload /> */}
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="about" element={<About />} />
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </div>
