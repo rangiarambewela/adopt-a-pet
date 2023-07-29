@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     axios
-      .get("/test")
+      .post("/api/register", { username: "rangi", email: "abc@abc.com" })
       .then((res) => {
         console.log(res);
         console.log(res.data);

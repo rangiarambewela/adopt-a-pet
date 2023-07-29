@@ -6,7 +6,7 @@ test = Blueprint("test", __name__)
 # test api route
 
 
-@test.route("/test")
+@test.route("/api/test")
 def test_function():
     all_dogs = Dog.query.all()
     print(all_dogs)
