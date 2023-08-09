@@ -1,6 +1,6 @@
 import React from "react";
 
-import kitten_basket from "../assets/kitten_basket.jpg";
+import kitten_basket from "../../assets/kitten_basket.jpg";
 export default function WaysToHelp() {
   const fundingInfo =
     "Every dollar we raise goes directly into animal care and operations. We do not receive government funding and rely solely on the financial donations and continued support from our community and supporters.";

@@ -1,7 +1,8 @@
 import React from "react";
-import "./LoginFormInput.css";
+import "./FormInput.css";
 
-function LoginFormInput({
+function FormInput({
+  label,
   img,
   type,
   placeholder,
@@ -13,12 +14,17 @@ function LoginFormInput({
 }) {
   return (
     <div className="input-wrapper">
+      {label?.length > 0 ? (
+        <label htmlFor={id} className="text-blue-1">
+          {label}
+        </label>
+      ) : null}
       <div
         className={`input d-flex align-items-center ${
           error ? "input-error" : ""
         }`}
       >
-        <img src={img} alt="" className="input-logo" />
+        {img && <img src={img} alt="" className="input-logo" />}
         <input
           type={type}
           placeholder={placeholder}
@@ -35,4 +41,4 @@ function LoginFormInput({
   );
 }
 
-export default LoginFormInput;
+export default FormInput;

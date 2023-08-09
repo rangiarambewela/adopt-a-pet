@@ -1,5 +1,5 @@
 import React from "react";
-import puppies from "../assets/puppies.jpg";
+import puppies from "../../assets/puppies.jpg";
 
 import "./AnnoucementCard.css";
 

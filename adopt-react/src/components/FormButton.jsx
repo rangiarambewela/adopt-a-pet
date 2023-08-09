@@ -3,7 +3,7 @@ import "./FormButton.css";
 
 function FormButton({ text, className, onClick }) {
   return (
-    <button className={`form-btn ${className}`} onClick={onClick}>
+    <button type="button" className={`form-btn ${className}`} onClick={onClick}>
       <div className="text-center btn-text">{text}</div>
     </button>
   );

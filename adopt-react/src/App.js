@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import LandingPage from "./landing/LandingPage";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
+// import ImageUpload from "./components/ImageUpload";
+import LandingPage from "./components/landing/LandingPage";
 import About from "./about/About";
-import Navbar from "./navbar/Navbar";
-import Login from "./login/Login";
-import Footer from "./footer/Footer";
-import ImageUpload from "./components/ImageUpload";
+import Login from "./components/auth/Login";
+import RegisterForm from "./components/auth/RegisterForm";
+import PrivateRoute from "./components/PrivateRoute";
+import Portal from "./components/dashboard/Portal";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios
-      .post("/api/register", { username: "rangi", email: "abc@abc.com" })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <div className="App">
-      <Navbar />
+      <AuthProvider>
+        <Navbar />
 
-      {/* <ImageUpload /> */}
+        {/* <ImageUpload /> */}
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="about" element={<About />} />
-        <Route path="login" element={<Login />} />
-      </Routes>
-      <Footer />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="about" element={<About />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<RegisterForm />} />
+          {/* <Route path="dashboard" element={<Dashboard />} /> */}
+          <Route
+            path="/portal"
+            element={
+              <PrivateRoute>
+                <Portal />
+              </PrivateRoute>
+            }
+          ></Route>
+        </Routes>
+        <Footer />
+      </AuthProvider>
     </div>
   );
 }
