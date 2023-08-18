@@ -1,9 +1,12 @@
 .navigation {
   background-color: #fff;
-  position: sticky;
+  position: fixed;
   left: 0;
+  right: 0;
   top: 0;
-  padding: 0 0.5rem;
+  height: 70px;
+  /* bottom: 70px; */
+  /* padding: 0 0.5rem; */
 }
 
 .logo {

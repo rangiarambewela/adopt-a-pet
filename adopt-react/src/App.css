@@ -54,3 +54,7 @@ p {
 .text-blue-1 {
   color: #0e1041;
 }
+
+.page-padding {
+  padding-top: 70px;
+}

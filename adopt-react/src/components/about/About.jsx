@@ -1,10 +1,10 @@
 import React from "react";
 import "./About.css";
-import about_us_img from "../assets/about-us.jpeg";
+import about_us_img from "../../assets/about-us.jpeg";
 import DirectorCard from "./DirectorCard";
-import director1 from "../assets/director1.jpg";
-import director2 from "../assets/director2.jpg";
-import director3 from "../assets/director3.jpg";
+import director1 from "../../assets/director1.jpg";
+import director2 from "../../assets/director2.jpg";
+import director3 from "../../assets/director3.jpg";
 
 function About() {
   const about_us_p1 =
@@ -15,7 +15,7 @@ function About() {
     "APS is an independent shelter. Our operations are not administered by nor funded by the OSPCA, the Toronto Humane Society, the City of Toronto Animal Services nor any other organization. APS operations are overseen by a volunteer board of directors. Everyone involved at APS is a volunteer, including our board of directors, shelter volunteers, office volunteers and program coordinators. APS has no paid employees.";
   return (
     <div className="p-3 px-lg-5">
-      <div className="d-flex flex-column flex-md-row gap-md-3 gap-lg-5 align-items-md-center pb-3 pb-lg-5">
+      <div className="d-flex flex-column flex-md-row gap-md-3 gap-lg-5 align-items-md-center pb-3 pb-lg-5 page-padding">
         <div>
           <h1>About Us</h1>
           <p className="pb-3">{about_us_p1}</p>

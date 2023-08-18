@@ -1,0 +1,8 @@
+cloudinary
+flask
+flask-sqlalchemy
+flask-bcrypt
+python-dotenv
+flask-session
+flask-cors
+redis
