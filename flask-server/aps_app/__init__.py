@@ -51,8 +51,10 @@ def create_app():
 
     from aps_app.routes.test import test
     from aps_app.users.routes import users
+    from aps_app.dogs.routes import dogs
 
     app.register_blueprint(test)
     app.register_blueprint(users)
+    app.register_blueprint(dogs)
 
     return app

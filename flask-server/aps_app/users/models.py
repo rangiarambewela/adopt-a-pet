@@ -1,4 +1,4 @@
-
+from sqlalchemy.orm import relationship
 
 from aps_app import db, bcrypt
 import datetime
@@ -6,8 +6,8 @@ from sqlalchemy import Column, Integer, DateTime, String, BINARY, BOOLEAN, Text
 
 
 
-class User(db.Model):
-    __tablename__ = "user"
+class Users(db.Model):
+    __tablename__ = "users"
 
     user_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     username = Column(String(20), unique=True, nullable=False)
@@ -45,7 +45,7 @@ class User(db.Model):
     def register_user(cls, username, fname, lname, email, password):
 
         hashed_password = bcrypt.generate_password_hash(password)
-        new_user = User(
+        new_user = Users(
             username=username,
             first_name=fname,
             last_name=lname,

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, session
-from .models import User
+from .models import Users
 from .schemas import (
     UserLoginSchema,
     UserRegisterSchema,
@@ -33,7 +33,7 @@ def login_user(payload):
     username = payload.get("username")
     password = payload.get("password")
 
-    found_user = User.find_by_username(username)
+    found_user = Users.find_by_username(username)
 
     if found_user is None:
         return dict_json_response({
@@ -87,7 +87,7 @@ def get_current_user():
             }
         }, 401)
 
-    user = User.find_by_id(user_id)
+    user = Users.find_by_id(user_id)
 
     user_info = {
         "id": user.user_id,
@@ -117,13 +117,13 @@ def register_user(payload):
     email = payload.get("email")
     password = payload.get("password")
 
-    user_exists = User.query.filter_by(username=username).first() is not None
+    user_exists = Users.query.filter_by(username=username).first() is not None
 
     if user_exists:
         out = {"errors": {"username": "Username is already taken."}, "status": "error"}
         return dict_json_response(out, 200)
 
-    new_user = User.register_user(username, first_name, last_name, email, password)
+    new_user = Users.register_user(username, first_name, last_name, email, password)
     user_info = {
         "id": new_user.user_id,
         "username": new_user.username,

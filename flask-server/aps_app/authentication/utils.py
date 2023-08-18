@@ -2,7 +2,6 @@ from functools import wraps
 from flask import request
 from marshmallow import ValidationError
 from aps_app import dict_json_response
-from aps_app.users.models import User
 
 
 def validate_payload(schema, many=False):

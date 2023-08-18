@@ -6,7 +6,6 @@ import "./App.css";
 
 import Navbar from "./components/navbar/Navbar";
 import BrowseLayout from "./components/footer/BrowseLayout";
-import Footer from "./components/footer/Footer";
 // import ImageUpload from "./components/ImageUpload";
 import LandingPage from "./components/landing/LandingPage";
 import About from "./components/about/About";
@@ -29,7 +28,7 @@ export default function App() {
             <Route index element={<LandingPage />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
-            {/* <Route path="register" element={<RegisterForm />} /> */}
+            <Route path="register" element={<RegisterForm />} />
           </Route>
 
           <Route

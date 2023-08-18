@@ -1,37 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "../../axios";
 import AnimalList from "./AnimalList";
 import "./Dashboard.css";
 
 function Dashboard() {
-  const dogs = [
-    {
-      name: "Puppies",
-      image: "",
-      age: 0,
-      sex: "Male",
-    },
-    {
-      name: "Millie",
-      image: "",
-      age: 3,
-      sex: "Female",
-    },
-  ];
+  const [isLoading, setIsLoading] = useState(true);
+  const [dogs, setDogs] = useState([]);
 
-  const cats = [
-    {
-      name: "Kittens",
-      image: "",
-      age: 0,
-      sex: "Male",
-    },
-    {
-      name: "Lola",
-      image: "",
-      age: 3,
-      sex: "Female",
-    },
-  ];
+  const getAllDogs = async () => {
+    try {
+      const response = await axios.get("/api/dogs");
+      console.log(response);
+      setDogs(response.data);
+      setIsLoading(false);
+    } catch (e) {
+      console.log("ERROR fetching dogs: ", e);
+      setDogs(null);
+    }
+  };
+  useEffect(() => {
+    console.log("Dashboard loading");
+    getAllDogs();
+  }, []);
+
   return (
     <div className="dashboard">
       <h1>Your Animals </h1>
@@ -43,9 +34,7 @@ function Dashboard() {
       </div>
       <div>
         <h2>Cats</h2>
-        <div>
-          <AnimalList animals={cats} />
-        </div>
+        <div>{/* <AnimalList animals={cats} /> */}</div>
       </div>
     </div>
   );

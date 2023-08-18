@@ -1,5 +1,5 @@
 from flask import Blueprint
-from aps_app.models.dogs import Dog
+from aps_app.dogs.models import Dogs
 
 
 test = Blueprint("test", __name__)
@@ -8,7 +8,7 @@ test = Blueprint("test", __name__)
 
 @test.route("/api/test", methods=['GET', 'POST'])
 def test_function():
-    all_dogs = Dog.query.all()
+    all_dogs = Dogs.query.all()
     print(all_dogs)
     out = []
     for dog in all_dogs:

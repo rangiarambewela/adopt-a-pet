@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "../axios";
+import axios from "axios";
 
 function ImageUpload() {
   const [imageUploads, setImageUploads] = useState([]);
@@ -16,8 +16,13 @@ function ImageUpload() {
       "https://api.cloudinary.com/v1_1/" +
       process.env.REACT_APP_CLOUNDINARY_CLOUD_NAME +
       "/image/upload";
-    const res = await axios.post(req_url, formData);
-    return res.data.url;
+    try {
+      const res = await axios.post(req_url, formData);
+      console.log("RESULT: ", res);
+      return res.data.url;
+    } catch (e) {
+      console.log("ERROR UPLOADING: ", e);
+    }
   };
 
   const uploadImages = async () => {

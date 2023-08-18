@@ -4,7 +4,7 @@ from marshmallow import (
     ValidationError,
     validates_schema,
 )
-from aps_app.users.models import User
+from aps_app.users.models import Users
 import re
 
 
@@ -31,9 +31,9 @@ class UserRegisterSchema(Schema):
             errors["last_name"] = ["Please enter your name"]
         if re.match(email_regex, data["email"]) is None:
             errors["email"] = ["Please enter a valid email"]
-        elif User.find_by_email(data["email"]) is not None:
+        elif Users.find_by_email(data["email"]) is not None:
             errors["email"] = ["This email is already taken"]
-        if User.find_by_username(data["username"]) is not None:
+        if Users.find_by_username(data["username"]) is not None:
             errors["username"] = ["This username is already taken"]
         if (len(data["password"]) < 6) or (len(data["password"]) > 255):
             errors["password"] = [
