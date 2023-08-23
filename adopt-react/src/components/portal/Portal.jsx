@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import Dashboard from "./Dashboard";
 import axios from "../../axios";
 import "./Portal.css";
 
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
+
+import Dashboard from "./Dashboard";
+import NewDogForm from "./DogForm";
 
 function Portal() {
   const navigate = useNavigate();
@@ -18,14 +20,32 @@ function Portal() {
   };
   return (
     <div className="d-flex page-padding vh-100">
-      <div className="sidebar col-3 px-0 bg-dark">
-        <button className="btn btn-primary" onClick={logoutUser}>
+      <div className="sidebar col-auto px-0 bg-light d-flex flex-column">
+        <button
+          className="btn btn-secondary w-100"
+          onClick={() => {
+            navigate("/portal");
+          }}
+        >
+          Home
+        </button>
+
+        <button
+          className="btn btn-secondary w-100"
+          onClick={() => {
+            navigate("/portal/dog/new");
+          }}
+        >
+          Create New Dog
+        </button>
+
+        <button className="btn btn-primary w-100" onClick={logoutUser}>
           Log Out
         </button>
       </div>
 
       <div className="col">
-        <Dashboard />
+        <Outlet />
       </div>
     </div>
   );

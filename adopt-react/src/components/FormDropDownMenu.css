@@ -1,0 +1,18 @@
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #e7e7ec !important;
+  color: #0e1041 !important;
+  border: none;
+  border-radius: 10px;
+}
+
+.dropdown-wrapper {
+  border-radius: 10px;
+}
+
+.dropdown-error {
+  border: 1.25px solid #ff5050;
+  color: #ff5050;
+}

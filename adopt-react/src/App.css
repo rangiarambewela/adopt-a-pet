@@ -58,3 +58,13 @@ p {
 .page-padding {
   padding-top: 70px;
 }
+
+/* Customized Toastify Styling */
+
+.Toastify__progress-bar--error {
+  background-color: #ff5050;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  color: #ff5050;
+}

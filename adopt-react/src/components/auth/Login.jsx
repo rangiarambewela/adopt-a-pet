@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { validateUsername, validatePassword } from "../../utils/authUtils";
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 import "./Login.css";
 import usernameLogo from "../../assets/icons/username.svg";
@@ -11,6 +12,7 @@ import FormInput from "../FormInput";
 import FormButton from "../FormButton";
 import LoadingScreen from "../loading/LoadingScreen";
 import axios from "../../axios";
+import ToastContainerWrapper from "../ToastContainerWrapper";
 
 function Login() {
   const navigate = useNavigate();
@@ -44,11 +46,23 @@ function Login() {
       const response = await axios.post("/api/login", data);
       console.log(response.data);
       const user_data = response.data?.user;
-      console.log("SETTING USER");
       setUser(user_data); // set context for user info
       navigate("/portal", { replace: true }); // redirect to home page
     } catch (err) {
-      console.log("COULD NOT LOG IN: ", err);
+      if (err.response.status === 500) {
+        toast.error(
+          "Sorry, a system error has occurred. Please contact the support team for help.",
+          {
+            toastId: "login_server_error",
+          }
+        );
+        setUsername("");
+        setPassword("");
+      } else {
+        toast.error("Sorry, the username or password is incorrect!", {
+          toastId: "login_error",
+        });
+      }
     }
   };
 
@@ -79,7 +93,7 @@ function Login() {
               value={username}
               error={usernameError}
               errorMsg={usernameErrorMsg}
-              onBlur={(event) => setUsername(event.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -92,13 +106,14 @@ function Login() {
               value={password}
               error={passwordError}
               errorMsg={passwordErrorMsg}
-              onBlur={(event) => setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
 
           <FormButton text="Log In" className="w-100" onClick={loginHander} />
         </form>
       </div>
+      <ToastContainerWrapper />
     </div>
   );
 }

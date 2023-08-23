@@ -3,9 +3,11 @@ import AnimalCard from "./AnimalCard";
 
 function AnimalList({ animals }) {
   return (
-    <div className="d-flex ">
+    <div className="d-flex flex-wrap ">
       {animals.map((animal) => {
-        return <AnimalCard animal={animal} />;
+        return (
+          <AnimalCard animal={animal} key={`${animal.type}${animal.id}`} />
+        );
       })}
     </div>
   );

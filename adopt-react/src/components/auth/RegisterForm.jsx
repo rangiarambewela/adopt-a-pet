@@ -42,7 +42,7 @@ function RegisterForm() {
       const response = await axios.post("/api/register", data);
       console.log(response.data);
     } else {
-      console.log("Log in error");
+      console.log("Registration error");
     }
   };
 
@@ -90,39 +90,6 @@ function RegisterForm() {
 
     return validUsername && validPassword && status;
   };
-
-  //   const validateUsername = () => {
-  //     setUsernameError(false);
-  //     setusernameErrorMsg("");
-  //     if (username.length === 0) {
-  //       setUsernameError(true);
-  //       setusernameErrorMsg("Please enter a username.");
-  //       return false;
-  //     }
-  //     if (username.length < 5) {
-  //       setUsernameError(true);
-  //       setusernameErrorMsg("Username cannot be less than 5 characters long.");
-  //       return false;
-  //     }
-  //     return true;
-  //   };
-
-  //   const validatePassword = () => {
-  //     setPasswordError(false);
-  //     setPasswordErrorMsg("");
-  //     if (password.length === 0) {
-  //       setPasswordError(true);
-  //       setPasswordErrorMsg("Please enter a password.");
-  //       return false;
-  //     }
-  //     if (password.length < 6) {
-  //       setPasswordError(true);
-  //       setPasswordErrorMsg("Please ensure password is 6 - 48 characters long.");
-  //       return false;
-  //     }
-
-  //     return true;
-  //   };
 
   return (
     <div>

@@ -47,10 +47,8 @@ export async function checkAuthentication(user) {
       const res = await axios.get("/api/check-authentication");
       return res.data.user;
     } catch (e) {
-      console.log("NOT LOGGED IN: ", e);
       return null;
     }
   }
-  console.log("USER NOT NULL");
   return user;
 }

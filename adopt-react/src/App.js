@@ -1,7 +1,8 @@
 import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { Routes, Route, Navigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 import Navbar from "./components/navbar/Navbar";
@@ -13,6 +14,8 @@ import Login from "./components/auth/Login";
 import RegisterForm from "./components/auth/RegisterForm";
 import PrivateRoute from "./components/PrivateRoute";
 import Portal from "./components/portal/Portal";
+import Dashboard from "./components/portal/Dashboard";
+import NewDogForm from "./components/portal/DogForm";
 import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
@@ -32,13 +35,16 @@ export default function App() {
           </Route>
 
           <Route
-            path="/portal"
+            path="portal"
             element={
               <PrivateRoute>
                 <Portal />
               </PrivateRoute>
             }
-          ></Route>
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="dog/new" element={<NewDogForm />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>

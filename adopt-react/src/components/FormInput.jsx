@@ -5,12 +5,15 @@ function FormInput({
   label,
   img,
   type,
+  min,
+  max,
   placeholder,
   name,
   id,
   error,
   errorMsg,
-  onBlur,
+  onChange,
+  value,
 }) {
   return (
     <div className="input-wrapper">
@@ -27,11 +30,13 @@ function FormInput({
         {img && <img src={img} alt="" className="input-logo" />}
         <input
           type={type}
+          value={value}
+          min={min}
           placeholder={placeholder}
           name={name}
           id={id}
           className="input-box ps-3"
-          onBlur={onBlur}
+          onChange={onChange}
         />
       </div>
       {error && errorMsg.length > 0 && (

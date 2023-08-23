@@ -14,7 +14,7 @@ class Dogs(db.Model):
     name = Column(String(20), nullable=False)
     age = Column(Integer, nullable=False)
     sex = Column(String(1), nullable=False)
-    status = Column(Integer, nullable=False)
+    status = Column(Integer, nullable=False, default=1)
     data = Column(JSON, nullable=False, default={})
     created_at = Column(DateTime, default=lambda: datetime.datetime.utcnow())
 
@@ -24,9 +24,24 @@ class Dogs(db.Model):
     # STATUS 0 = unavailable
     # STATUS 2 = pending
 
+    @classmethod
+    def create(cls, coordinator_id, name, age, sex, status):
+        new_dog = Dogs(
+            coordinator_id=coordinator_id,
+            name=name,
+            age=age,
+            sex=sex,
+            status=status
+        )
 
-    def __repr__(self):
-        return f'<Dog: {self.name}, Age: {self.age}, Sex: {self.sex}, ID: {self.dog_id}>'  # function ensures readable print statement for debugging
+        db.session.add(new_dog)
+        db.session.commit()
+
+        return new_dog
+
+    @classmethod
+    def __repr__(cls):
+        return f'<Dog: {cls.name}, Age: {cls.age}, Sex: {cls.sex}, ID: {cls.dog_id}>'  # function ensures readable print statement for debugging
 
 
 

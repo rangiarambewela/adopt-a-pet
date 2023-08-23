@@ -1,7 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "../../axios";
-import AnimalList from "./AnimalList";
+import { toast } from "react-toastify";
 import "./Dashboard.css";
+
+import ic from "../../assets/icons/username.svg";
+
+import AnimalList from "./AnimalList";
+import ErrorPage from "../ErrorPage";
+import LoadingScreen from "../loading/LoadingScreen";
+import ToastContainerWrapper from "../ToastContainerWrapper";
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,26 +23,37 @@ function Dashboard() {
     } catch (e) {
       console.log("ERROR fetching dogs: ", e);
       setDogs(null);
+      setIsLoading(false);
+      toast.error("Error loading your dogs, please contact support team.", {
+        toastId: "dogs_loading_error",
+      });
     }
   };
   useEffect(() => {
     console.log("Dashboard loading");
     getAllDogs();
   }, []);
-
-  return (
+  if (isLoading) return <LoadingScreen />;
+  return dogs ? (
     <div className="dashboard">
       <h1>Your Animals </h1>
-      <div>
-        <h2>Dogs</h2>
+      {dogs.length > 0 && (
         <div>
-          <AnimalList animals={dogs} />
+          <h2>Dogs</h2>
+          <div>
+            <AnimalList animals={dogs} />
+          </div>
         </div>
-      </div>
+      )}
       <div>
         <h2>Cats</h2>
         <div>{/* <AnimalList animals={cats} /> */}</div>
       </div>
+    </div>
+  ) : (
+    <div className="h-100">
+      <ErrorPage />
+      <ToastContainerWrapper />
     </div>
   );
 }
