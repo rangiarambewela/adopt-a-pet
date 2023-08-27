@@ -5,14 +5,14 @@ function FormInput({
   label,
   img,
   type,
-  min,
-  max,
+  step,
   placeholder,
   name,
   id,
   error,
   errorMsg,
   onChange,
+  onBlur,
   value,
 }) {
   return (
@@ -31,12 +31,13 @@ function FormInput({
         <input
           type={type}
           value={value}
-          min={min}
+          step={step}
           placeholder={placeholder}
           name={name}
           id={id}
           className="input-box ps-3"
           onChange={onChange}
+          onBlur={onBlur}
         />
       </div>
       {error && errorMsg.length > 0 && (

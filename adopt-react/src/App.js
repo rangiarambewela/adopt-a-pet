@@ -14,8 +14,8 @@ import Login from "./components/auth/Login";
 import RegisterForm from "./components/auth/RegisterForm";
 import PrivateRoute from "./components/PrivateRoute";
 import Portal from "./components/portal/Portal";
-import Dashboard from "./components/portal/Dashboard";
-import NewDogForm from "./components/portal/DogForm";
+import Dashboard from "./components/portal/dashboard/Dashboard";
+import NewDogForm from "./components/portal/create/DogForm";
 import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
             <Route index element={<LandingPage />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
-            <Route path="register" element={<RegisterForm />} />
+            {/* <Route path="register" element={<RegisterForm />} /> */}
           </Route>
 
           <Route
@@ -43,7 +43,7 @@ export default function App() {
             }
           >
             <Route index element={<Dashboard />} />
-            <Route path="dog/new" element={<NewDogForm />} />
+            <Route path="dogs/new" element={<NewDogForm />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

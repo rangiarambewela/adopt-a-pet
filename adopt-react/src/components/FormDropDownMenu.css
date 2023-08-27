@@ -16,3 +16,11 @@
   border: 1.25px solid #ff5050;
   color: #ff5050;
 }
+
+.dropdown-toggle {
+  width: 100%;
+}
+
+.dropdown-menu {
+  width: 100%;
+}

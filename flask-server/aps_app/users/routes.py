@@ -4,7 +4,7 @@ from .schemas import (
     UserLoginSchema,
     UserRegisterSchema,
 )
-from aps_app.authentication.utils import validate_payload
+from aps_app.authentication.utils import validate_payload, public_endpoint
 from aps_app import dict_json_response, bcrypt
 
 users = Blueprint("user", __name__)
@@ -28,6 +28,7 @@ def get_all_users():
 
 
 @users.route('/api/login', methods=["POST"])
+@public_endpoint()
 @validate_payload(UserLoginSchema)
 def login_user(payload):
     username = payload.get("username")
@@ -76,6 +77,7 @@ def login_user(payload):
 
 
 @users.route('/api/check-authentication', methods=['GET'])
+@public_endpoint()
 def get_current_user():
     user_id = session.get("user_id")
     if not user_id:

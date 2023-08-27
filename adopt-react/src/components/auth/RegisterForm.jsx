@@ -105,7 +105,7 @@ function RegisterForm() {
               value={firstName}
               error={firstNameError}
               errorMsg={firstNameErrorMessage}
-              onBlur={(event) => setFirstName(event.target.value.trim())}
+              onChange={(event) => setFirstName(event.target.value.trim())}
             />
           </div>
           <div className="mb-3">
@@ -117,7 +117,7 @@ function RegisterForm() {
               value={lastName}
               error={lastNameError}
               errorMsg={lastNameErrorMessage}
-              onBlur={(event) => setLastName(event.target.value.trim())}
+              onChange={(event) => setLastName(event.target.value.trim())}
             />
           </div>
           <div className="mb-3">
@@ -129,7 +129,7 @@ function RegisterForm() {
               value={email}
               error={emailError}
               errorMsg={emailErrorMsg}
-              onBlur={(event) => setEmail(event.target.value.trim())}
+              onChange={(event) => setEmail(event.target.value.trim())}
             />
           </div>
           <div className="mb-3">
@@ -141,7 +141,7 @@ function RegisterForm() {
               value={username}
               error={userNameError}
               errorMsg={usernameErrorMsg}
-              onBlur={(event) => setUsername(event.target.value.trim())}
+              onChange={(event) => setUsername(event.target.value.trim())}
             />
           </div>
           <div className="mb-3">
@@ -153,7 +153,7 @@ function RegisterForm() {
               value={password}
               error={passwordError}
               errorMsg={passwordErrorMsg}
-              onBlur={(event) => setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
 

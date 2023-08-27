@@ -5,9 +5,6 @@ import "./Portal.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate, Outlet } from "react-router-dom";
 
-import Dashboard from "./Dashboard";
-import NewDogForm from "./DogForm";
-
 function Portal() {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
@@ -19,7 +16,7 @@ function Portal() {
     navigate("/", { replace: true });
   };
   return (
-    <div className="d-flex page-padding vh-100">
+    <div className="d-flex page-padding vh-100 overflow-hidden">
       <div className="sidebar col-auto px-0 bg-light d-flex flex-column">
         <button
           className="btn btn-secondary w-100"
@@ -33,7 +30,7 @@ function Portal() {
         <button
           className="btn btn-secondary w-100"
           onClick={() => {
-            navigate("/portal/dog/new");
+            navigate("/portal/dogs/new");
           }}
         >
           Create New Dog
@@ -44,7 +41,7 @@ function Portal() {
         </button>
       </div>
 
-      <div className="col">
+      <div className="col overflow-scroll">
         <Outlet />
       </div>
     </div>

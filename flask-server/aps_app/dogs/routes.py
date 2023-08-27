@@ -12,20 +12,18 @@ dogs = Blueprint("dogs", __name__)
 
 
 @dogs.route("/api/dogs", methods=["GET"])
-# validate_authentication
 def get_all_dogs():
 
-    # NEED TO USE VALIDATE AUTH to get user object
-
     user_id = session.get("user_id")
-    if not user_id:
-        return dict_json_response({
-            "authenticated": False,
-            "status": "error",
-            "errors": {
-                "message": "User is not authenticated"
-            }
-        }, 401)
+    # Should not need to do the check below anymore because before_request takes care of it
+    # if not user_id:
+    #     return dict_json_response({
+    #         "authenticated": False,
+    #         "status": "error",
+    #         "errors": {
+    #             "message": "User is not authenticated"
+    #         }
+    #     }, 401)
 
     all_dogs = Dogs.query.filter_by(coordinator_id=user_id)
 
@@ -35,7 +33,7 @@ def get_all_dogs():
             'id': dog.dog_id,
             'type': "dog",
             'name': dog.name,
-            'age': dog.age,
+            'birthdate': dog.birthdate.strftime("%b %d %Y"),
             'sex': dog.sex,
             'status': dog.status,
             'image': dog.data.get("image")
@@ -48,11 +46,20 @@ def get_all_dogs():
 # validate_authentication
 @validate_payload(CreateDogSchema)
 def create_new_dog(payload):
+    print(payload)
+    # return dict_json_response({}, 200)
     # NEED TO USE VALIDATE AUTH to get user object
-    dog_name = payload.get("name")
-    dog_age = payload.get("age")
-    dog_sex = payload.get("sex")
-    dog_status = payload.get("status")
+    name = payload.get("name")
+    breed = payload.get("breed")
+    color = payload.get("color")
+    birthdate = payload.get("birthdate")
+    sex = payload.get("sex")
+    size = payload.get("size")
+    house_trained = payload.get("house_trained")
+    good_with_kids = payload.get("good_with_kids")
+    intake_date = payload.get("intake_date")
+    adoption_fee = payload.get("adoption_fee")
+    status = payload.get("status")
 
     user_id = session.get("user_id")
     if not user_id:
@@ -64,7 +71,19 @@ def create_new_dog(payload):
             }
         }, 401)
     try:
-        new_dog = Dogs.create(user_id, dog_name, dog_age, dog_sex, dog_status)
+        new_dog = Dogs.create(
+            coordinator_id=user_id,
+            name=name,
+            birthdate=birthdate,
+            sex=sex,
+            breed=breed,
+            color=color,
+            size=size,
+            house_trained=house_trained,
+            good_with_kids=good_with_kids,
+            intake_date=intake_date,
+            adoption_fee=adoption_fee,
+            status=status)
         out = {
             "status": "success",
             "message": "dog created successfully"

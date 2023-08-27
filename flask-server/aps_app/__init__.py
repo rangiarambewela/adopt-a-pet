@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 
-from flask import Flask, request
+from flask import Flask, request, g, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_session import Session
@@ -29,7 +29,6 @@ def dict_json_response(data, status):
     resp = json.dumps(data)  # convert data to JSON
     return resp, status, {"Content-Type": "application/json; charset=utf-8"}
 
-
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = \
@@ -49,6 +48,27 @@ def create_app():
     server_session.init_app(app)
     CORS(app)
 
+    @app.before_request
+    def validate_authentication(*args, **kwargs):
+        """Solution taken from: https://stackoverflow.com/questions/19574694/flask-hit-decorator-before-before-request-signal-fires"""
+        if request.endpoint in app.view_functions:
+            view_func = app.view_functions[request.endpoint]
+            g.skip_authentication = hasattr(view_func, '_skip_authentication')
+            print('Should skip authentication on {0}: {1}'.format(request.path, g.skip_authentication))
+
+            if not g.skip_authentication:
+                user_id = session.get("user_id")
+                if not user_id:
+                    print("User Not Authenticated")
+                    return dict_json_response({
+                        "authenticated": False,
+                        "status": "error",
+                        "errors": {
+                            "message": "User is not authenticated"
+                        }
+                    }, 401)
+                print("User authenticated")
+
     from aps_app.routes.test import test
     from aps_app.users.routes import users
     from aps_app.dogs.routes import dogs
@@ -56,5 +76,6 @@ def create_app():
     app.register_blueprint(test)
     app.register_blueprint(users)
     app.register_blueprint(dogs)
+
 
     return app

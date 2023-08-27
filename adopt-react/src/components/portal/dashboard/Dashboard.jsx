@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "../../axios";
+import axios from "../../../axios";
 import { toast } from "react-toastify";
-import "./Dashboard.css";
-
-import ic from "../../assets/icons/username.svg";
 
 import AnimalList from "./AnimalList";
-import ErrorPage from "../ErrorPage";
-import LoadingScreen from "../loading/LoadingScreen";
-import ToastContainerWrapper from "../ToastContainerWrapper";
+import ErrorPage from "../../ErrorPage";
+import LoadingScreen from "../../loading/LoadingScreen";
+import ToastContainerWrapper from "../../ToastContainerWrapper";
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +32,7 @@ function Dashboard() {
   }, []);
   if (isLoading) return <LoadingScreen />;
   return dogs ? (
-    <div className="dashboard">
+    <div className="h-100 overflow-scroll">
       <h1>Your Animals </h1>
       {dogs.length > 0 && (
         <div>
@@ -45,10 +42,10 @@ function Dashboard() {
           </div>
         </div>
       )}
-      <div>
+      {/* <div>
         <h2>Cats</h2>
-        <div>{/* <AnimalList animals={cats} /> */}</div>
-      </div>
+        <div><AnimalList animals={cats} /></div>
+      </div> */}
     </div>
   ) : (
     <div className="h-100">

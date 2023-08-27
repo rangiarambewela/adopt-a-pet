@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+
 import "./FormDropDownMenu.css";
 
 function FormDropDownMenu({ title, items, error }) {
@@ -13,10 +14,15 @@ function FormDropDownMenu({ title, items, error }) {
   };
   return (
     <div className={` dropdown-wrapper ${error ? "dropdown-error" : ""}`}>
-      <DropdownButton id="dropdown-basic-button" title={dropdownTitle}>
+      <DropdownButton
+        className="btn-block"
+        id="dropdown-basic-button"
+        title={dropdownTitle}
+      >
         {items.map((item) => {
           return (
             <Dropdown.Item
+              className="w-100"
               key={`option-${item.label}`}
               onClick={() => {
                 handleSelect(item.action, item.label);
