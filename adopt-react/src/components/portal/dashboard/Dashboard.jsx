@@ -42,10 +42,10 @@ function Dashboard() {
           </div>
         </div>
       )}
-      <div>
+      {/* <div>
         <h2>Cats</h2>
-        {/* <div><AnimalList animals={cats} /></div> */}
-      </div>
+        <div><AnimalList animals={cats} /></div>
+      </div> */}
     </div>
   ) : (
     <div className="h-100">
