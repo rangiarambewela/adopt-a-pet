@@ -1,7 +1,7 @@
 import os
 from datetime import timedelta
 
-from flask import Flask, request, g, session
+from flask import Flask, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_session import Session
@@ -53,10 +53,10 @@ def create_app():
         """Solution taken from: https://stackoverflow.com/questions/19574694/flask-hit-decorator-before-before-request-signal-fires"""
         if request.endpoint in app.view_functions:
             view_func = app.view_functions[request.endpoint]
-            g.skip_authentication = hasattr(view_func, '_skip_authentication')
-            print('Should skip authentication on {0}: {1}'.format(request.path, g.skip_authentication))
+            skip_authentication = hasattr(view_func, '_skip_authentication')
+            print('Should skip authentication on {0}: {1}'.format(request.path, skip_authentication))
 
-            if not g.skip_authentication:
+            if not skip_authentication:
                 user_id = session.get("user_id")
                 if not user_id:
                     print("User Not Authenticated")
