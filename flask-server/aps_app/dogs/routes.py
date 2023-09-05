@@ -1,12 +1,10 @@
 from flask import Blueprint, request, session
 from .models import Dogs
-# from .schemas import (
-#     UserLoginSchema,
-#     UserRegisterSchema,
-# )
 from aps_app.authentication.utils import validate_payload
 from aps_app import dict_json_response
 from .schemas import CreateDogSchema
+from ..cloudinary.cloudinary_utils import delete_cloudinary_images
+from ..cloudinary.schemas import DeleteImagesSchema
 
 dogs = Blueprint("dogs", __name__)
 
@@ -43,11 +41,9 @@ def get_all_dogs():
 
 
 @dogs.route("/api/dogs/new", methods=["POST"])
-# validate_authentication
 @validate_payload(CreateDogSchema)
 def create_new_dog(payload):
     print(payload)
-    # return dict_json_response({}, 200)
     # NEED TO USE VALIDATE AUTH to get user object
     name = payload.get("name")
     breed = payload.get("breed")
@@ -94,4 +90,13 @@ def create_new_dog(payload):
             "message": "error creating new dog profile"
         }
 
+    return dict_json_response(out, 200)
+
+
+@dogs.route('/api/dogs/delete-cloudinary-images', methods=['POST'])
+@validate_payload(DeleteImagesSchema)
+def delete_dog_images(payload):
+    images = payload.get('images')
+    delete_cloudinary_images(images)
+    out = {"message": "success"}
     return dict_json_response(out, 200)

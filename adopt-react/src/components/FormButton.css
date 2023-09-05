@@ -5,6 +5,10 @@
   border-radius: 10px;
 }
 
+.disabled-btn {
+  background-color: #b6b7c6;
+}
+
 .btn-text {
   padding: 0.75rem;
 }

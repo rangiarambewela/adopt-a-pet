@@ -19,28 +19,60 @@ h1 {
   background-color: #f37320;
   color: #fff;
   box-sizing: border-box;
-  border: 2px solid #f37320;
+  border: 1.5px solid #f37320;
   margin-bottom: 1rem;
 }
 
 .action-btn-primary:hover {
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: #ffffff4d;
   color: #f37320;
-  border: 2px solid #f37320;
+  border: 1.5px solid #f37320;
 }
 
 .action-btn-secondary {
-  background-color: rgb(255, 255, 255, 0.3);
+  background-color: #ffffff4d;
   color: #f37320;
   box-sizing: border-box;
-  border: 2px solid #f37320;
+  border: 1.5px solid #f37320;
   margin-bottom: 1rem;
 }
 
 .action-btn-secondary:hover {
   background-color: #f37320;
   color: #fff;
-  border: 2px solid #f37320;
+  border: 1.5px solid #f37320;
+}
+
+.modal-action-btn-primary {
+  background-color: #f37320;
+  color: #fff;
+  box-sizing: border-box;
+  border: 1.5px solid #f37320;
+  margin-bottom: 1rem;
+}
+
+.modal-action-btn-secondary {
+  background-color: #ffffff4d;
+  color: #f37320;
+  box-sizing: border-box;
+  border: 1.5px solid #f37320;
+  margin-bottom: 1rem;
+}
+
+.modal-action-btn-primary:hover {
+  background-color: #f37320;
+  color: #fff;
+  box-sizing: border-box;
+  border: 1.5px solid #f37320;
+  margin-bottom: 1rem;
+}
+
+.modal-action-btn-secondary:hover {
+  background-color: #ffffff4d;
+  color: #f37320;
+  box-sizing: border-box;
+  border: 1.5px solid #f37320;
+  margin-bottom: 1rem;
 }
 
 .img-round {
@@ -51,8 +83,16 @@ p {
   margin-bottom: 0px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .text-blue-1 {
   color: #0e1041;
+}
+
+.text-error {
+  color: #ff5050;
 }
 
 .page-padding {
