@@ -22,6 +22,7 @@ const cloudinaryUpload = async (image, folderName) => {
       asset_id: res.data.asset_id,
       created_at: res.data.created_at,
       original_filename: res.data.original_filename,
+      format: res.data.format,
       public_id: res.data.public_id,
       secure_url: res.data.secure_url,
       signature: res.data.signature,
@@ -57,5 +58,6 @@ export function deleteCloudinaryImages(images) {
     });
   } catch (e) {
     // log error
+    console.log(e);
   }
 }

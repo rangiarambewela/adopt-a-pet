@@ -5,7 +5,6 @@ import datetime
 from sqlalchemy import Column, Integer, DateTime, String, BINARY, BOOLEAN, Text
 
 
-
 class Users(db.Model):
     __tablename__ = "users"
 

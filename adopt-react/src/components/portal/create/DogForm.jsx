@@ -257,8 +257,8 @@ function DogForm() {
 
   const saveDraft = () => {
     console.log("Clicked Save Draft");
-    setShowImageErrorModal(false); // IS THIS BAD
-    setShowImageFailedModal(false); // IS THIS BAD bc idk which modal called this but need to hide the modal
+    setShowImageErrorModal(false);
+    setShowImageFailedModal(false);
     const payload = generatePayload(successfullyUploadedImages);
     payload.display_status = 0;
     saveDogInfo(payload);

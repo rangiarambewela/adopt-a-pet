@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship
 
 from aps_app import db
 import datetime
-from sqlalchemy import Column, Integer, DateTime, Date, String, Boolean, Float, JSON, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, Date, String, Boolean, Float, Text, JSON, ForeignKey
 
 
 class Dogs(db.Model):
@@ -56,4 +56,38 @@ class Dogs(db.Model):
         return f'<Dog: {cls.name}, Age: {cls.age}, Sex: {cls.sex}, ID: {cls.dog_id}>'  # function ensures readable print statement for debugging
 
 
+class DogImages(db.Model):
 
+    __tablename__ = "dog_images"
+
+    image_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    dog_id = Column(Integer, ForeignKey("dogs.dog_id"), nullable=False)
+    asset_id = Column(String(100), nullable=False)  # NOT SURE IF THIS LENGTH IS OK
+    image_url = Column(Text, nullable=False)
+    original_filename = Column(Text, nullable=False)
+    format = Column(String(20), nullable=False)
+    public_id = Column(Text, nullable=False)
+    secure_url = Column(Text, nullable=False)
+    signature = Column(Text, nullable=False)
+    created_at = Column(DateTime, nullable=False)
+
+    dog = relationship("Dogs")
+
+    @classmethod
+    def store_dog_image(cls, dog_id, image):
+        new_img = DogImages(
+            dog_id=dog_id,
+            asset_id=image["asset_id"],
+            image_url=image["image_url"],
+            original_filename = image["original_filename"],
+            format=image["format"],
+            public_id=image["public_id"],
+            secure_url=image["secure_url"],
+            signature=image["signature"],
+            created_at=image["created_at"],
+        )
+
+        db.session.add(new_img)
+        db.session.commit()
+
+        return new_img
