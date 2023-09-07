@@ -1,12 +1,10 @@
 from flask import Blueprint, request, session
-from .models import Dogs
-# from .schemas import (
-#     UserLoginSchema,
-#     UserRegisterSchema,
-# )
+from .models import Dogs, DogImages
 from aps_app.authentication.utils import validate_payload
 from aps_app import dict_json_response
 from .schemas import CreateDogSchema
+from ..cloudinary.cloudinary_utils import delete_cloudinary_images
+from ..cloudinary.schemas import DeleteImagesSchema
 
 dogs = Blueprint("dogs", __name__)
 
@@ -43,12 +41,9 @@ def get_all_dogs():
 
 
 @dogs.route("/api/dogs/new", methods=["POST"])
-# validate_authentication
 @validate_payload(CreateDogSchema)
 def create_new_dog(payload):
     print(payload)
-    # return dict_json_response({}, 200)
-    # NEED TO USE VALIDATE AUTH to get user object
     name = payload.get("name")
     breed = payload.get("breed")
     color = payload.get("color")
@@ -60,16 +55,9 @@ def create_new_dog(payload):
     intake_date = payload.get("intake_date")
     adoption_fee = payload.get("adoption_fee")
     status = payload.get("status")
-
+    images = payload.get("images")
+    display_status = payload.get("display_status")
     user_id = session.get("user_id")
-    if not user_id:
-        return dict_json_response({
-            "authenticated": False,
-            "status": "error",
-            "errors": {
-                "message": "User is not authenticated"
-            }
-        }, 401)
     try:
         new_dog = Dogs.create(
             coordinator_id=user_id,
@@ -83,7 +71,14 @@ def create_new_dog(payload):
             good_with_kids=good_with_kids,
             intake_date=intake_date,
             adoption_fee=adoption_fee,
-            status=status)
+            status=status,
+            display_status=display_status
+        )
+
+        # Store all images in the database
+        for img in images:
+            DogImages.store_dog_image(new_dog.dog_id, img)
+
         out = {
             "status": "success",
             "message": "dog created successfully"
@@ -94,4 +89,13 @@ def create_new_dog(payload):
             "message": "error creating new dog profile"
         }
 
+    return dict_json_response(out, 200)
+
+
+@dogs.route('/api/dogs/delete-cloudinary-images', methods=['POST'])
+@validate_payload(DeleteImagesSchema)
+def delete_dog_images(payload):
+    images = payload.get('images')
+    delete_cloudinary_images(images)
+    out = {"message": "success"}
     return dict_json_response(out, 200)
