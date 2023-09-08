@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../../../axios";
 import { toast } from "react-toastify";
 
 import AnimalList from "./AnimalList";
 import ErrorPage from "../../ErrorPage";
 import LoadingScreen from "../../loading/LoadingScreen";
-import ToastContainerWrapper from "../../ToastContainerWrapper";
+import ToastContainerWrapper from "../../shared/ToastContainerWrapper";
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);

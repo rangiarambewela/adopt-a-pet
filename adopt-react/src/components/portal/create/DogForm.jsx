@@ -7,11 +7,11 @@ import {
   deleteCloudinaryImages,
 } from "../../../utils/imageUploadUtils";
 
-import FormInput from "../../FormInput";
-import FormButton from "../../FormButton";
-import FormDropDownMenu from "../../FormDropDownMenu";
-import ToastContainerWrapper from "../../ToastContainerWrapper";
-import ImageUpload from "../../ImageUpload";
+import FormInput from "../../shared/FormInput";
+import FormButton from "../../shared/FormButton";
+import FormDropDownMenu from "../../shared/FormDropDownMenu";
+import ToastContainerWrapper from "../../shared/ToastContainerWrapper";
+import ImageUpload from "../../shared/ImageUpload";
 import ImageUploadFailedErrorModal from "../../shared/ImageUploadFailedErrorModal";
 import ImageUploadErrorModal from "../../shared/ImageUploadErrorModal";
 
