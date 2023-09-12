@@ -23,13 +23,13 @@ class Dogs(db.Model):
     adoption_fee = Column(Float, nullable=False)
     status = Column(Integer, nullable=False, default=1)
     display_status = Column(Integer, nullable=False, default=0)
-    data = Column(JSON, nullable=False, default={})
+    data = Column(JSON, nullable=False)
     created_at = Column(DateTime, default=lambda: datetime.datetime.utcnow())
 
     coordinator = relationship("Users")
 
     @classmethod
-    def create(cls, coordinator_id, name, birthdate, sex, breed, color, size, house_trained, good_with_kids, intake_date, adoption_fee, status, display_status):
+    def create(cls, coordinator_id, name, birthdate, sex, breed, color, size, house_trained, good_with_kids, intake_date, adoption_fee, status, display_status, data):
         new_dog = Dogs(
             coordinator_id=coordinator_id,
             name=name,
@@ -43,7 +43,8 @@ class Dogs(db.Model):
             intake_date=intake_date,
             adoption_fee=adoption_fee,
             status=status,
-            display_status=display_status
+            display_status=display_status,
+            data=data
         )
 
         db.session.add(new_dog)

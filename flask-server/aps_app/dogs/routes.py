@@ -57,6 +57,7 @@ def create_new_dog(payload):
     status = payload.get("status")
     images = payload.get("images")
     display_status = payload.get("display_status")
+    data = payload.get("data")
     user_id = session.get("user_id")
     try:
         new_dog = Dogs.create(
@@ -72,7 +73,8 @@ def create_new_dog(payload):
             intake_date=intake_date,
             adoption_fee=adoption_fee,
             status=status,
-            display_status=display_status
+            display_status=display_status,
+            data=data
         )
 
         # Store all images in the database
