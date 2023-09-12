@@ -8,11 +8,11 @@ import "./Login.css";
 import usernameLogo from "../../assets/icons/username.svg";
 import passwordLogo from "../../assets/icons/password.svg";
 
-import FormInput from "../FormInput";
-import FormButton from "../FormButton";
+import FormInput from "../shared/FormInput";
+import FormButton from "../shared/FormButton";
 import LoadingScreen from "../loading/LoadingScreen";
 import axios from "../../axios";
-import ToastContainerWrapper from "../ToastContainerWrapper";
+import ToastContainerWrapper from "../shared/ToastContainerWrapper";
 
 function Login() {
   const navigate = useNavigate();

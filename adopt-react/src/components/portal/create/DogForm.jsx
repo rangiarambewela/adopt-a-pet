@@ -7,13 +7,14 @@ import {
   deleteCloudinaryImages,
 } from "../../../utils/imageUploadUtils";
 
-import FormInput from "../../FormInput";
-import FormButton from "../../FormButton";
-import FormDropDownMenu from "../../FormDropDownMenu";
-import ToastContainerWrapper from "../../ToastContainerWrapper";
-import ImageUpload from "../../ImageUpload";
+import FormInput from "../../shared/FormInput";
+import FormButton from "../../shared/FormButton";
+import FormDropDownMenu from "../../shared/FormDropDownMenu";
+import ToastContainerWrapper from "../../shared/ToastContainerWrapper";
+import ImageUpload from "../../shared/ImageUpload";
 import ImageUploadFailedErrorModal from "../../shared/ImageUploadFailedErrorModal";
 import ImageUploadErrorModal from "../../shared/ImageUploadErrorModal";
+import FormTextArea from "../../shared/FormTextArea";
 
 function DogForm() {
   const navigate = useNavigate();
@@ -56,6 +57,16 @@ function DogForm() {
 
   const [status, setStatus] = useState(-2); // -2 is not a valid state - uses this for form validation
   const [statusError, setStatusError] = useState(false);
+
+  const [description, setDescription] = useState("");
+  const [descriptionError, setDescriptionError] = useState(false);
+  const [descriptionErrorMsg, setDescriptionErrorMsg] = useState("");
+
+  const [needs, setNeeds] = useState("");
+
+  const [idealHome, setIdealHome] = useState("");
+  const [idealHomeError, setIdealHomeError] = useState(false);
+  const [idealHomeErrorMsg, setIdealHomeErrorMsg] = useState("");
 
   const [imageUploads, setImageUploads] = useState([]); // stores user input for imaged selected (not yet uploaded to cloudinary)
   const [imageUploadsError, setImageUploadsError] = useState(false);
@@ -171,6 +182,10 @@ function DogForm() {
     setStatusError(false);
     setImageUploadsError(false);
     setImageUploadErrorMsg("");
+    setDescriptionError(false);
+    setDescriptionErrorMsg("");
+    setIdealHomeError(false);
+    setIdealHomeErrorMsg("");
 
     if (name === "") {
       setNameError(true);
@@ -233,6 +248,18 @@ function DogForm() {
       setImageUploadErrorMsg("Please select up to 5 images to upload");
       formValid = false;
     }
+    if (description.length === 0) {
+      setDescriptionError(true);
+      setDescriptionErrorMsg("Please enter a description for the dog");
+      formValid = false;
+    }
+    if (idealHome.length === 0) {
+      setIdealHomeError(true);
+      setIdealHomeErrorMsg(
+        "Please enter what an ideal home looks like for the dog"
+      );
+      formValid = false;
+    }
     return formValid;
   };
 
@@ -251,6 +278,11 @@ function DogForm() {
       intake_date: intakeDate,
       adoption_fee: fee,
       display_status: 1,
+      data: {
+        description,
+        special_needs: needs,
+        ideal_home: idealHome,
+      },
     };
     return payload;
   };
@@ -295,6 +327,7 @@ function DogForm() {
 
   const saveDogInfo = async (data) => {
     console.log("in saveDogInfo");
+    console.log(data);
     setIsLoading(true);
     try {
       console.log(data);
@@ -460,6 +493,41 @@ function DogForm() {
               errorMsg={imageUploadErrorMsg}
             />
           </div>
+          <div className="pt-3 mb-3">
+            <FormTextArea
+              label="Dog Description"
+              name="dog_description"
+              placeholder="Tell us about your dog's personality, habits, and any special characteristics that make them unique. What's their story?"
+              value={description}
+              error={descriptionError}
+              errorMessage={descriptionErrorMsg}
+              onChange={(event) => setDescription(event.target.value)}
+              onBlur={(event) => setDescription(event.target.value.trim())}
+            />
+          </div>
+          <div className="mb-3">
+            <FormTextArea
+              label="Ideal Home"
+              name="ideal_home"
+              placeholder="What does the ideal home look like for your dog?"
+              value={idealHome}
+              error={idealHomeError}
+              errorMessage={idealHomeErrorMsg}
+              onChange={(event) => setIdealHome(event.target.value)}
+              onBlur={(event) => setIdealHome(event.target.value.trim())}
+            />
+          </div>
+          <div className="mb-3">
+            <FormTextArea
+              label="Special Needs"
+              name="needs"
+              placeholder="Are there any special needs your dog has? Please include them here"
+              value={needs}
+              onChange={(event) => setNeeds(event.target.value)}
+              onBlur={(event) => setNeeds(event.target.value.trim())}
+            />
+          </div>
+
           <FormButton
             text="Create Dog"
             className="w-100"

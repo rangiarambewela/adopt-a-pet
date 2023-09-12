@@ -1,0 +1,9 @@
+.description-area {
+  min-height: 100px;
+  border: 2px solid #e7e7ec;
+  border-radius: 10px;
+}
+
+.error-border {
+  border: 2px solid #ff5050;
+}

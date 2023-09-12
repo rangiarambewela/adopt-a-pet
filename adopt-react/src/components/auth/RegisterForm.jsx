@@ -3,8 +3,8 @@ import { useState } from "react";
 import axios from "../../axios";
 import { validateUsername, validatePassword } from "../../utils/authUtils";
 
-import FormInput from "../FormInput";
-import FormButton from "../FormButton";
+import FormInput from "../shared/FormInput";
+import FormButton from "../shared/FormButton";
 
 function RegisterForm() {
   const [firstName, setFirstName] = useState("");
