@@ -29,12 +29,10 @@ def get_all_dogs():
     for dog in all_dogs:
         out.append({
             'id': dog.dog_id,
-            'type': "dog",
             'name': dog.name,
             'birthdate': dog.birthdate.strftime("%b %d %Y"),
             'sex': dog.sex,
             'status': dog.status,
-            'image': dog.data.get("image")
         })
 
     return dict_json_response(out, 200)
@@ -100,4 +98,42 @@ def delete_dog_images(payload):
     images = payload.get('images')
     delete_cloudinary_images(images)
     out = {"message": "success"}
+    return dict_json_response(out, 200)
+
+
+@dogs.route("/api/dogs/<int:dog_id>", methods=["GET"])
+def get_dog(dog_id):
+    dog = Dogs.find_by_id(dog_id)
+    if not dog:
+        return dict_json_response({
+            "status": "error",
+            "message": "Dog not found"
+        }, 404)
+
+    # Calculate age
+    dog_age = dog.calculate_age()
+
+    # NEED TO: get all images
+
+    out = {
+        'id': dog.dog_id,
+        'coordinator_id': dog.coordinator_id,
+        'name': dog.name,
+        'birthdate': dog.birthdate.strftime("%b %d %Y"),
+        'age': dog_age,
+        'sex': dog.sex,
+        'breed': dog.breed,
+        'size': dog.size,
+        'color': dog.color,
+        'house_trained': dog.house_trained,
+        'good_with_kids': dog.good_with_kids,
+        'intake_date': dog.intake_date.strftime("%b %d %Y"),
+        'adoption_fee': dog.adoption_fee,
+        'status': dog.status,
+        'display_status': dog.display_status,
+        'data': dog.data,
+        'created_at': dog.created_at.strftime("%b %d %Y, %I:%M %p"),
+        'images': []  # NEED TO GET ACTUAL IMAGES
+    }
+
     return dict_json_response(out, 200)

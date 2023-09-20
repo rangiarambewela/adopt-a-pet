@@ -16,6 +16,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Portal from "./components/portal/Portal";
 import Dashboard from "./components/portal/dashboard/Dashboard";
 import NewDogForm from "./components/portal/create/DogForm";
+import DisplayDog from "./components/portal/display/DisplayDog";
 import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="dogs/new" element={<NewDogForm />} />
+            <Route path="dogs/:id" element={<DisplayDog />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
