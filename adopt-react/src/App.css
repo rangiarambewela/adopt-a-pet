@@ -15,6 +15,10 @@ h1 {
   }
 }
 
+h5 {
+  color: #0e1041;
+}
+
 .action-btn-primary {
   background-color: #f37320;
   color: #fff;
@@ -77,6 +81,15 @@ h1 {
 
 .img-round {
   border-radius: 10px;
+}
+
+.rounded {
+  border-radius: 10px !important;
+}
+
+.rounded-top {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
 }
 
 p {
